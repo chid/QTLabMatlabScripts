@@ -11,9 +11,14 @@ function read_data(varargin)
     end
     newData = importdata(f);
     matches = regexpi(newData.textdata,'#\s*name: (.*)', 'tokens');
-    matches = matches(~cellfun('isempty',matches)); % remove empty, could chain these two together
-    
+    matches = matches(~cellfun('isempty',matches)); % remove empty, could chain these two together    
     titles = cat(1, matches{:}); % picks out stuff
+    
+    matches = regexpi(newData.textdata,'#\s*type: (.*)', 'tokens');
+    matches = matches(~cellfun('isempty',matches)); 
+    coordinate = cat(1, matches{:}); % picks out stuff
+    
+    newData.coordinate = coordinate;
     newData.titles = titles;
 
     % Create new variables in the base workspace from those fields.
