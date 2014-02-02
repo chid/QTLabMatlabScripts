@@ -15,8 +15,10 @@ function qtp(varargin)
             ylabel(titles{n+1}); 
         else        
             m=ceil((num_vals)/2);
-            for n=find(coords==0)
-                subplot(m,2,n-1);
+            for i=1:length(find(coords==0))
+                t = find(coords==0);
+                n = t(i);
+                subplot(m,2,i);
                 plot(data(:,1), data(:,n));
                 xlabel(titles{1});
                 ylabel(titles{n}); 
