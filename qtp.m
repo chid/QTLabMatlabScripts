@@ -65,7 +65,8 @@ function qtp(varargin)
     else
         error('unsupported number of coordinates, please contact maintainer.')
     end
-        
+    filename = evalin('base', 'filename');
+    suptitle(regexprep(filename.filename,'_','\\_'))
 
         
 

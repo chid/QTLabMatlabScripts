@@ -4,8 +4,8 @@ function read_data(varargin)
         f = varargin{1};
     else
         [fileselection.filename fileselection.pathname]=uigetfile({'*.dat','*'},'Choose Folder');
-%       shoudl I cd to the path?
-        f = [fileselection.pathname fileselection.filename];
+%       should I cd to the path?
+        f = [fileselection.pathname fileselection.filename];        
         if fileselection.filename == 0
             error('please select a file')    
         end
@@ -27,4 +27,5 @@ function read_data(varargin)
     for i = 1:length(vars)
         assignin('base', vars{i}, newData.(vars{i}));
     end
+    assignin('base', 'filename', fileselection)
 end
