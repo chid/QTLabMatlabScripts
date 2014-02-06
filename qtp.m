@@ -19,10 +19,32 @@ function qtp(varargin)
                 t = find(coords==0);
                 n = t(i);
                 subplot(m,2,i);
+%                 plot(data(:,2), data(:,n));
                 plot(data(:,1), data(:,n));
                 xlabel(titles{1});
                 ylabel(titles{n}); 
+%                 xlabel 'V_{GSET}'               
             end
+            
+%             subplot(m,2,1);
+%             hold all
+%             for i=unique(data(:,5))'
+%                i
+%                x = data(:,1);
+%                y = data(:,2);
+%                index = find(data(:,5) == i);
+%                plot(x(index),y(index))
+%             end
+%             subplot(m,2,2);
+%             hold all
+%             for i=unique(data(:,5))'               
+%                x = data(:,1);
+%                y = data(:,3);
+%                index = find(data(:,5) == i);
+%                plot(x(index),y(index))
+%             end
+%             hold off
+                
         end    
     elseif num_coords == 2;
         coord_cols = find(coords==1);
@@ -34,8 +56,8 @@ function qtp(varargin)
             % we need to reshape the data
             Y = Y-1;
             x = x(1:(X*Y));
-            y = y(1:(X*Y));            
-        end
+            y = y(1:(X*Y));
+        end        
         if nargin>0
             n=varargin{1}; 
             val_cols = find(coords==0);

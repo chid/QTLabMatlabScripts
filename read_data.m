@@ -15,6 +15,17 @@ function read_data(varargin)
     matches = matches(~cellfun('isempty',matches)); % remove empty, could chain these two together    
     titles = cat(1, matches{:}); % picks out stuff
     
+    if strfind(titles{1}{1}, 'Time') > 0
+        newData.data(:,1) = newData.data(:,1) / 60 / 60;
+        titles{1} = 'Time (Hours)';
+        fprintf('Changed Time Axis into Hours\n')
+    end
+    
+    if strfind(titles{2}{1}, 'V_gate') > 0
+        newData.data(:,2) = newData.data(:,2) / 5;
+        fprintf('Corrected Gate Voltage\n')
+    end
+    
     matches = regexpi(newData.textdata,'#\s*type: (.*)', 'tokens');
     matches = matches(~cellfun('isempty',matches)); 
     coordinate = cat(1, matches{:}); % picks out stuff
@@ -28,4 +39,11 @@ function read_data(varargin)
         assignin('base', vars{i}, newData.(vars{i}));
     end
     assignin('base', 'filename', fileselection)
+    d = cell(0);
+    for i=1:size(newData.data,2)
+        d{i} = newData.data(:,i);
+    end
+    assignin('base', 'd', d)
+    
+    qtp
 end
