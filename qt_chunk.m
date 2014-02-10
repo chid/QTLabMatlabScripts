@@ -22,7 +22,8 @@ close all
 for i=2:length(ii)
 % for i = 4
     f = ii(i-1);
-    e = ii(i);
+    f = f + 1; % FIX THIS
+    e = ii(i);   
 %     subplot(2,5,i-1)    
     h = figure;
 %     title_s = {'#1 (Gate Pulse) .75V (Nothing)', '#2 (Gate Pulse) .75V (2sec)', '#3 (Gate Pulse) .75V (20sec)'};
@@ -45,18 +46,18 @@ for i=2:length(ii)
             suptitle(sprintf('#%i (Gate Jumps) %sV',i-1,num2str(x(f))))
         end
 %         suptitle(title_s{i-1})
-%         if (i > 2)
-% %             Vs = [0.5, 1];
-% %             Ds = [2, 20];
-%             Vs = [-1];
+        if (i > 2)
+%             Vs = [0.5, 1];
 %             Ds = [2, 20];
-% %             ceil((i-1)/2)
-% %             mod(i-1,2) + 1
-%             suptitle(sprintf('#%i (Gate Pulse) %.1f V for %i seconds\n',i-1,Vs(ceil((i-2)/2)), Ds(mod(i-1,2) + 1)))
-%         %     fprintf('%.1f V for %i seconds\n',Vs(ceil(i/2)), Ds(mod(i-1,2) + 1))
-%         else
-%             suptitle(sprintf('#1 (Gate Pulse) (none)\n'))
-%         end
+            Vs = [.5, 1];
+            Ds = [2, 20];
+%             ceil((i-1)/2)
+%             mod(i-1,2) + 1
+            suptitle(sprintf('#%i (Gate Pulse) %.1f V for %i seconds\n',i-1,Vs(ceil((i-2)/2)), Ds(mod(i-1,2) + 1)))
+        %     fprintf('%.1f V for %i seconds\n',Vs(ceil(i/2)), Ds(mod(i-1,2) + 1))
+        else
+            suptitle(sprintf('#1 (Gate Pulse) (none)\n'))
+        end
 
         
     end
