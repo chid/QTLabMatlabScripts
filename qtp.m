@@ -68,11 +68,18 @@ function qtp(varargin)
             title(titles{val_cols(n)});
         else
             m=ceil((num_vals)/2);
+%             m = 1
             for n=find(coords==0)';
                 j = find(coords==0);
-                subplot(m,2,find(j ==n));
-                z = data(:,n);                
-                pcolor(unique(x), unique(y), reshape(z(1:(X*Y)),X,Y))
+                if (num_vals > 1)
+                    subplot(m,2,find(j ==n));
+                else
+                    subplot(1,1,find(j ==n));
+                end
+                z = data(:,n);
+                [~,i] = unique(x); x = x(sort(i));
+                [~,i] = unique(y); y = y(sort(i));                
+                pcolor(x, y, reshape(z(1:(X*Y)),X,Y))
                 xlabel(titles{1});                
                 ylabel(titles{2}); 
                 title(titles{n});
